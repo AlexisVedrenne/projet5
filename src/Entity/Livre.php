@@ -70,9 +70,15 @@ class Livre
      */
     private $couverture;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Achat::class, mappedBy="livre")
+     */
+    private $achats;
+
     public function __construct()
     {
         $this->theme = new ArrayCollection();
+        $this->achats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -208,6 +214,33 @@ class Livre
     public function setCouverture(?string $couverture): self
     {
         $this->couverture = $couverture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Achat[]
+     */
+    public function getAchats(): Collection
+    {
+        return $this->achats;
+    }
+
+    public function addAchat(Achat $achat): self
+    {
+        if (!$this->achats->contains($achat)) {
+            $this->achats[] = $achat;
+            $achat->addLivre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAchat(Achat $achat): self
+    {
+        if ($this->achats->removeElement($achat)) {
+            $achat->removeLivre($this);
+        }
 
         return $this;
     }
