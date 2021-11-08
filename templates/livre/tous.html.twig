@@ -1,16 +1,20 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    {% for item in livres %}
         <div class="container">
-            <div class="card" style="width: 18rem;">
-                <img src="{{item.couverture}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{ item.libelle }}</h5>
-                    <p class="card-text">{{ item.description }}</p>
-                    <a href="#" class="btn btn-primary">Voir ce livre</a>
+            <div class="row col-auto">
+    {% for item in livres %}
+                <div class="col-auto mb-5 mt-2">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{item.couverture}}" class="card-img-top" alt="..." width="30" height="300">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.libelle }}</h5>
+                        {# <p class="card-text">{{ item.description }}</p> #}
+                        <a href="#" class="btn btn-primary">Voir ce livre</a>
+                    </div>
                 </div>
-            </div>
-        </div>
+                </div>
     {% endfor %}
+                </div>
+        </div>
 {% endblock %}

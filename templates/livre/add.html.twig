@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+        <div class="container mt-3">
+            <div class="row justify-content-md-center">
+                <div class="col-1 align-self-end text-end">{{form_label(form.libelle)}}</div>
+                <div class="col-3">{{form_widget(form.libelle, {'attr':{'placeholder':"Entrez le libelle du livre...",'class':"form-control"}}) }}</div>
+                <div class="col-1 align-self-end text-end">{{form_label(form.auteur)}}</div>
+                <div class="col-3">{{form_widget(form.auteur, {'attr':{'placeholder':"Entrez l'auteur du livre...",'class':"form-control"}}) }}</div>
+                <div class="col-1 align-self-end text-end">{{form_label(form.sortie)}}</div>
+                <div class="col-3">{{form_widget(form.sortie, {'attr':{'placeholder':"Entrez la date de sortie du livre...",'class':"form-control"}}) }}</div>
+            </div>
+            <div class="row justify-content-md-center  mt-3">
+                <div class="col-10">{{form_widget(form.description, {'attr':{'placeholder':"Entrez la description du livre...",'class':"form-control"}}) }}</div>
+            </div>
+            <div class="row justify-content-md-center  mt-3">
+                <div class="col-2">{{form_widget(form.prix, {'attr':{'placeholder':"Entrez le prix du livre... ",'class':"form-control"}}) }}</div>
+                <div class="col-2">{{form_widget(form.editeur, {'attr':{'placeholder':"Entrez l'éditeur du livre... ",'class':"form-control"}}) }}</div>
+                <div class="col-2">{{form_widget(form.langue, {'attr':{'placeholder':"Entrez la langue du livre... ",'class':"form-control"}}) }}</div>
+            </div>
+            <div class="row justify-content-md-center  mt-3">
+                <div class="col-2">{{form_widget(form.categorie, {'attr':{'placeholder':"Choisir la catégorie du livre",'class':"form-control"}}) }}</div>
+                <div class="col-2">{{form_widget(form.couverture, {'attr':{'placeholder':"Mettre la couverture du livre... ",'class':"form-control"}}) }}</div>   
+            </div>
+            <div class="row justify-content-md-center  mt-3">
+                <div class="col row justify-content-md-center">
+                    {{form_widget(form.theme, {'attr':{'class':"row justify-content-md-center col-3"}}) }}
+                </div>
+            </div>
+            <div class="row justify-content-md-center  mt-3">
+                <div class="col-2"><input class="btn btn-success" type="submit"></input></div>
+            </div>
+    {{form_end(form)}}
+    
+{% endblock %}

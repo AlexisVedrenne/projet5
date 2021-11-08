@@ -40,7 +40,7 @@ class Livre
     private $sortie;
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="string", length=5000)
      */
     private $description;
 
