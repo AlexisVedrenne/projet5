@@ -40,4 +40,12 @@ class LivreController extends AbstractController
         }
         return $this->render("livre/add.html.twig",['form'=>$form->createView()]);
     }
+
+
+    /**
+     * @Route("/voir/{id}",name="voir")
+     */
+    public function  getLivre(Livre $livre){
+        return $this->render("livre/voir.html.twig",['livre'=>$livre]);
+    }
 }

@@ -9,8 +9,8 @@
                     <img src="{{item.couverture}}" class="card-img-top" alt="..." width="30" height="300">
                     <div class="card-body">
                         <h5 class="card-title">{{ item.libelle }}</h5>
-                        {# <p class="card-text">{{ item.description }}</p> #}
-                        <a href="#" class="btn btn-primary">Voir ce livre</a>
+                        <p class="card-text">{{ item.description[:280] ~ (item.description|length > 280 ? '...') }}</p>
+                        <a href="/livre/voir/{{item.id}}" class="btn btn-primary">Voir ce livre</a>
                     </div>
                 </div>
                 </div>
