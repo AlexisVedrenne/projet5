@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% for item in livres %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{item.couverture}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ item.libelle }}</h5>
+                <p class="card-text">{{ item.description }}</p>
+                <a href="#" class="btn btn-primary">Voir ce livre</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -65,6 +65,11 @@ class Livre
      */
     private $langue;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $couverture;
+
     public function __construct()
     {
         $this->theme = new ArrayCollection();
@@ -191,6 +196,18 @@ class Livre
     public function setLangue(string $langue): self
     {
         $this->langue = $langue;
+
+        return $this;
+    }
+
+    public function getCouverture(): ?string
+    {
+        return $this->couverture;
+    }
+
+    public function setCouverture(?string $couverture): self
+    {
+        $this->couverture = $couverture;
 
         return $this;
     }
