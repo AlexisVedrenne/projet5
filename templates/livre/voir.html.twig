@@ -1,5 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    {{livre.description}}
+    <div class="container">
+        <div class="row">
+            <div class="col-3"><img src="{{ livre.couverture }}" width="300" height="400"></div>
+            <div class="col">
+                <h1>{{ livre.libelle }}</h1>
+            </div>
+        </div>
+    </div>
 {% endblock %}
