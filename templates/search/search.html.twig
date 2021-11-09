@@ -2,8 +2,10 @@
 {# empty Twig template #}
 
     {{ form_start(formSearch)}}
-    <div class="form-inline">
-        {{ form_widget(formSearch.cherche,{'attr':{'placeholder':'Chercher un livre...'}}) }}  
-        {{ form_widget(formSearch.Rechercher,{'attr':{'class':'btn btn-primary'}}) }}
+    <div class="container">
+        <div class="row">
+            {{ form_widget(formSearch.cherche,{'attr':{'placeholder':'Chercher un livre...','class':'form-control col me-2'}}) }}  
+            {{ form_widget(formSearch.Go,{'attr':{'class':'btn btn-secondary col-2'}}) }}
+        <div>
     </div>
 {{ form_end(formSearch) }}
