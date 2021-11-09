@@ -41,6 +41,7 @@ class LivreController extends AbstractController
             $livre=$form->getData();
             $manager->persist($livre);
             $manager->flush();
+            return $this->redirectToRoute('livre_tous');
         }
         return $this->render("livre/add.html.twig",['form'=>$form->createView(),'type'=>$type,'id'=>$livre->getId()]);
     }

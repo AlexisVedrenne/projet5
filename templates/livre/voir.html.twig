@@ -15,7 +15,7 @@ footer{
         <div class="row">
             <div class="col-3"><img src="{{ livre.couverture }}" width="300" height="400"></div>
             <div class="col">
-                <h1>{{ livre.libelle }}</h1>
+                <h1>{{ livre.libelle }} - {{ livre.prix }}€</h1>
                 <h6>{{livre.auteur}} - Paru le {{ livre.sortie|date("m/d/Y") }} - {{ livre.editeur }} - {{ livre.categorie.libelle }} - {{ livre.langue }}<h6>
                 <p>{{ livre.description }}</p>
                 <h6 style="font-size:12px">Les thèmes de ce livre : {% for item in livre.theme %}
@@ -24,7 +24,7 @@ footer{
                 {% if app.user %}
                     <div class="container mt-5">
                         <div class="row">
-                            <a class="btn btn-primary me-2 col">Achat direct</a>
+                            <a href="/achat/livre/{{livre.id}}" class="btn btn-primary me-2 col">Achat direct</a>
                             <a class="btn btn-secondary col">Ajouter au panier</a>
                         </div>
                     </div>

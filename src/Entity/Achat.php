@@ -6,6 +6,7 @@ use App\Repository\AchatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Livre;
 
 /**
  * @ORM\Entity(repositoryClass=AchatRepository::class)
@@ -35,14 +36,14 @@ class Achat
     private $User;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Livre::class, inversedBy="achats")
+     * @ORM\ManyToOne(targetEntity=Livre::class, inversedBy="achats")
      */
     private $livre;
+
 
     public function __construct()
     {
         $this->User = new ArrayCollection();
-        $this->livre = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,26 +100,18 @@ class Achat
     }
 
     /**
-     * @return Collection|Livre[]
+     * @return Livre[]
      */
-    public function getLivre(): Collection
+    public function getLivre():Livre
     {
         return $this->livre;
     }
 
-    public function addLivre(Livre $livre): self
+    public function setLivre(?Livre $livre): self
     {
-        if (!$this->livre->contains($livre)) {
-            $this->livre[] = $livre;
-        }
+        $this->livre = $livre;
 
         return $this;
     }
 
-    public function removeLivre(Livre $livre): self
-    {
-        $this->livre->removeElement($livre);
-
-        return $this;
-    }
 }

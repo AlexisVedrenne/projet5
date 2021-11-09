@@ -49,6 +49,7 @@
                     <th scope="col">Livre</th>
                     <th scope="col">Date d'achat</th>
                     <th scope="col">Date de renvoie</th>
+                    <th scope="col">Prix €</th>
              </tr>
             </thead>
             <tbody>
@@ -57,7 +58,8 @@
                     <th scope="row">{{item.id}}</th>
                     <td>{{item.livre.libelle}}</td>
                     <td>{{item.dataAchat|date("m/d/Y")}}</td>
-                    <td>{{item.renvoie|date("m/d/Y")}}</td>
+                    <td>{% if item.renvoie %}{{item.renvoie|date("m/d/Y")}}{% endif %}</td>
+                    <td>{{item.livre.prix}}</td>
                 </tr>                   
                 {% endfor %}
             </tbody>

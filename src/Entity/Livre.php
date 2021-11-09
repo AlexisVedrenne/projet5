@@ -71,9 +71,11 @@ class Livre
     private $couverture;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Achat::class, mappedBy="livre")
+     * @ORM\OneToMany(targetEntity=Achat::class, mappedBy="livre")
      */
     private $achats;
+
+
 
     public function __construct()
     {
@@ -230,7 +232,7 @@ class Livre
     {
         if (!$this->achats->contains($achat)) {
             $this->achats[] = $achat;
-            $achat->addLivre($this);
+            $achat->setLivre($this);
         }
 
         return $this;
@@ -239,9 +241,14 @@ class Livre
     public function removeAchat(Achat $achat): self
     {
         if ($this->achats->removeElement($achat)) {
-            $achat->removeLivre($this);
+            // set the owning side to null (unless already changed)
+            if ($achat->getLivre() === $this) {
+                $achat->setLivre(null);
+            }
         }
 
         return $this;
     }
+
+
 }

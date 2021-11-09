@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <h1>Récapitulatif de votre achat :</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Editeur</th>
+                        <th scope="col">Prix €</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{ livre.id }}</th>
+                        <td>{{livre.libelle}}</td>
+                        <td>{{livre.editeur}}</td>
+                        <td>{{livre.prix}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-4"><h3>Pour un total de : {{ livre.prix }}€</h3></div>
+            <div class="col-3">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Procéder au paiement</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Votre commande</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <h5>Adresse de livraison au :</h5>
+                                    <p>{{ app.user.adresse }} {{ app.user.cp }} {{ app.user.ville }} pour {{ app.user.nom }} {{ app.user.prenom }}</p>
+                                </div>
+                                <ul class="list-group">
+                                    <li class="list-group-item">{{ livre.libelle }} - {{ livre.auteur }} - {{ livre.editeur }} - {{livre.prix}}€</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Retour</button>
+                            <a href="/achat/livre/confirme/{{ livre.id }}" class="btn btn-primary">Confirmer</a>
+                        </div>
+                    </div>
+                </div>
+</div>      </div>
+        </div>
+    </div>
+    
+{% endblock %}
