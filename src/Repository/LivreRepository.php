@@ -47,4 +47,15 @@ class LivreRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    public function findBySearch($value){
+        $qb = $this->createQueryBuilder('l')
+            ->join('App\Entity\Categorie','c','WITH','c.id=l.categorie')
+            ->where('l.libelle LIKE :lib')
+            ->orWhere('c.libelle LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('lib','%'.$value.'%');
+        return $qb->getQuery()->execute();
+    }
 }

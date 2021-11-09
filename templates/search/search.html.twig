@@ -1,0 +1,9 @@
+
+{# empty Twig template #}
+
+    {{ form_start(formSearch)}}
+    <div class="form-inline">
+        {{ form_widget(formSearch.cherche,{'attr':{'placeholder':'Chercher un livre...'}}) }}  
+        {{ form_widget(formSearch.Rechercher,{'attr':{'class':'btn btn-primary'}}) }}
+    </div>
+{{ form_end(formSearch) }}

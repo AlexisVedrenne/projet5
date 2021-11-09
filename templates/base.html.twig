@@ -55,6 +55,7 @@
                         </ul>
                     </div>
                 </div>
+                {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
             </nav>
         </header>
         {% block body %}{% endblock %}
