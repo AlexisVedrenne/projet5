@@ -22,11 +22,11 @@ class LivreType extends AbstractType
         $builder
             ->add('libelle',TextType::class,[
                 'label'=>'Titre du livre',
-                'help'=>'Le titre à 30 caractères',
+                'help'=>'Le titre à 50 caractères',
                 'constraints'=>[
                     new Length([
-                        "max"=>30,
-                        "maxMessage"=>"Le titre ne peut pas avoir plus de 30 caractère"
+                        "max"=>50,
+                        "maxMessage"=>"Le titre ne peut pas avoir plus de 50 caractère"
                     ])
                 ]
             ])
