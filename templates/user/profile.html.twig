@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container mb-5 mt-5">
+        <h1 class="mb-5">Gestion du compte de {{app.user.username}}</h1>
+        {{form_start(form)}}
+            <div class="row justify-content-md-center">
+                <h4 class="mb-5">Information sur le compte</h4>
+                <div class="form-floating col-3 mb-5">
+                    {{ form_widget(form.username,{'attr':{'class':'form-control','placeholder':"Entrez votre nom d'utilisateur..."}}) }}
+                    <label class="ms-1" for="user_username">Nom d'utilisateur</label>
+                </div>
+                <div class="form-floating col-3 mb-5">
+                    {{ form_widget(form.nom,{'attr':{'class':'form-control','placeholder':"Entrez votre nom de famille..."}}) }}
+                    <label class="ms-1" for="user_username">Nom de famille</label>
+                </div>
+                <div class="form-floating col-3 mb-5">
+                    {{ form_widget(form.prenom,{'attr':{'class':'form-control','placeholder':"Entrez votre prénom..."}}) }}
+                    <label class="ms-1" for="user_username">Prénom de l'utilisateur</label>
+                </div>                                
+            </div>
+            <div class="row justify-content-md-center">
+                <h4 class="mb-5">Information sur l'adresse de facturation</h4>
+                <div class="form-floating col-3">
+                    {{ form_widget(form.ville,{'attr':{'class':'form-control','placeholder':"Entrez votre nom d'utilisateur..."}}) }}
+                    <label class="ms-1" for="user_username">Ville</label>
+                </div>
+                <div class="form-floating col-3">
+                    {{ form_widget(form.adresse,{'attr':{'class':'form-control','placeholder':"Entrez votre nom de famille..."}}) }}
+                    <label class="ms-1" for="user_username">Adresse de rue</label>
+                </div>
+                <div class="form-floating col-3">
+                    {{ form_widget(form.cp,{'attr':{'class':'form-control','placeholder':"Entrez votre prénom..."}}) }}
+                    <label class="ms-1" for="user_username">Code postal</label>
+                </div>                                
+            </div>
+            <div class="row justify-content-md-center">
+                <button class="btn btn-success mt-5 col-2" type="submit">Valider</button>
+            </div>           
+        {{form_end(form)}}
+    </div>
+    <hr>
+    <div class="container">
+        <h1>Historique des achats</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Livre</th>
+                    <th scope="col">Date d'achat</th>
+                    <th scope="col">Date de renvoie</th>
+             </tr>
+            </thead>
+            <tbody>
+                {% for item in achats %}
+                <tr>
+                    <th scope="row">{{item.id}}</th>
+                    <td>{{item.livre.libelle}}</td>
+                    <td>{{item.dataAchat|date("m/d/Y")}}</td>
+                    <td>{{item.renvoie|date("m/d/Y")}}</td>
+                </tr>                   
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
