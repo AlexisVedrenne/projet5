@@ -1,11 +1,36 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+<style type="text/css">
+p::first-letter {
+    font-size:50px;
+}
+footer{
+    position:absolute;
+    bottom:0;
+    width:100%;
+        }
+</style>
     <div class="container mt-2">
         <div class="row">
             <div class="col-3"><img src="{{ livre.couverture }}" width="300" height="400"></div>
             <div class="col">
                 <h1>{{ livre.libelle }}</h1>
+                <h6>{{livre.auteur}} - Paru le {{ livre.sortie|date("m/d/Y") }} - {{ livre.editeur }} - {{ livre.categorie.libelle }} - {{ livre.langue }}<h6>
+                <p>{{ livre.description }}</p>
+                <h6 style="font-size:12px">Les thèmes de ce livre : {% for item in livre.theme %}
+                    {{item.libelle}},
+                {% endfor %}</h6>
+                {% if app.user %}
+                    <div class="container mt-5">
+                        <div class="row">
+                            <a class="btn btn-primary me-2 col">Achat direct</a>
+                            <a class="btn btn-secondary col">Ajouter au panier</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <h6 class="mt-5 text-danger">Pour acheter ce livre vous devez vous connecter !</h6>
+                {% endif %}
             </div>
         </div>
     </div>

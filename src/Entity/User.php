@@ -44,6 +44,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $achats;
 
+    /**
+     * @ORM\Column(type="string", length=30, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=30, nullable=true)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=60, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $cp;
+
     public function __construct()
     {
         $this->achats = new ArrayCollection();
@@ -154,6 +179,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->achats->removeElement($achat)) {
             $achat->removeUser($this);
         }
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(?string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getCp(): ?int
+    {
+        return $this->cp;
+    }
+
+    public function setCp(?int $cp): self
+    {
+        $this->cp = $cp;
 
         return $this;
     }
