@@ -22,15 +22,19 @@ class LivreController extends AbstractController
      * @Route("/tous",name="tous")
      */
     public function getAll(LivreRepository $repo){
-
         return $this->render('livre/tous.html.twig',['livres'=>$repo->findAll()]);
     }
 
     /**
      * @Route("/add",name="add")
+     * @Route("/modif/{id}",name="modif")
      */
-    public function AddLivre(EntityManagerInterface $manager,Request $request){
-        $livre=new Livre();
+    public function AddLivre(EntityManagerInterface $manager,Request $request,Livre $livre=null){
+        $type=0;
+        if(!$livre){
+            $livre= new Livre();
+            $type=1;
+        }
         $form=$this->createForm(LivreType::class,$livre);
         $form->handleRequest($request);
         if($form->isSubmitted()&&$form->isValid()){
@@ -38,7 +42,16 @@ class LivreController extends AbstractController
             $manager->persist($livre);
             $manager->flush();
         }
-        return $this->render("livre/add.html.twig",['form'=>$form->createView()]);
+        return $this->render("livre/add.html.twig",['form'=>$form->createView(),'type'=>$type,'id'=>$livre->getId()]);
+    }
+
+    /**
+     * @Route("/del/{id}",name="del")
+     */
+    public function removeLivre(Livre $livre,EntityManagerInterface $manager){
+        $manager->remove($livre);
+        $manager->flush();
+        return $this->redirectToRoute('livre_tous');
     }
 
 
@@ -48,4 +61,6 @@ class LivreController extends AbstractController
     public function  getLivre(Livre $livre){
         return $this->render("livre/voir.html.twig",['livre'=>$livre]);
     }
+
+
 }

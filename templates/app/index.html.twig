@@ -11,8 +11,12 @@
                 <div class="col-8"><h1 class="text-dark">Bienvenue sur notre bibliothèque !</h1></div>
             </div>
             <div class="row justify-content-md-center mb-2">
-                <div class="col-1 me-4"><button class="btn btn-primary">Connexion</button></div>
-                <div class="col-1"><button class="btn btn-secondary">Inscription</button></div>
+                {% if app.user %}
+                    <h1>{{app.user.username}}</h1>
+                {% else %}
+                <div class="col-1 me-4"><a href="/connexion" class="btn btn-primary">Connexion</a></div>
+                <div class="col-1"><a href="/inscription" class="btn btn-secondary">Inscription</a></div>
+                {% endif %}
             </div>
         </div>      
         <p class="text-dark">Site numéro un d'achat et de lecture de livre en ligne.</p>

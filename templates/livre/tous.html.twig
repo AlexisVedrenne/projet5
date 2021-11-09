@@ -11,10 +11,13 @@
                         <h5 class="card-title">{{ item.libelle }}</h5>
                         <p class="card-text">{{ item.description[:280] ~ (item.description|length > 280 ? '...') }}</p>
                         <a href="/livre/voir/{{item.id}}" class="btn btn-primary">Voir ce livre</a>
+                        {% if app.user and app.user.roles[0]=='ROLE_ADMIN' %}
+                            <a href="/livre/modif/{{item.id}}" class="btn btn-secondary">Modifier le livre</a>
+                        {% endif %}
                     </div>
                 </div>
                 </div>
     {% endfor %}
-                </div>
+            </div>
         </div>
 {% endblock %}

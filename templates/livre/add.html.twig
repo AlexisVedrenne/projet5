@@ -4,6 +4,11 @@
 
     {{ form_start(form) }}
         <div class="container mt-3">
+            {% if type == 1 %}
+                <h1 class="mb-5 mt-2">Ajout d'un nouveau livre !</h1>
+            {% else %}
+                <h1 class="mb-5 mt-2">Modification d'un livre !</h1>
+            {% endif %}
             <div class="row justify-content-md-center">
                 <div class="col-1 align-self-end text-end">{{form_label(form.libelle)}}</div>
                 <div class="col-3">{{form_widget(form.libelle, {'attr':{'placeholder':"Entrez le libelle du livre...",'class':"form-control"}}) }}</div>
@@ -31,6 +36,9 @@
             </div>
             <div class="row justify-content-md-center  mt-3">
                 <div class="col-2"><input class="btn btn-success" type="submit"></input></div>
+                {% if type == 0 %}
+                    <div class="col-2"><a class="btn btn-danger" href="/livre/del/{{id}}">Supprimer</a></div>
+                {% endif %}
             </div>
     {{form_end(form)}}
     
